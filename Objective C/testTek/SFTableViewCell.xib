@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8187.4" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8151.3"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SFTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EFe-tD-COF">
+                    <rect key="frame" x="0.0" y="0.0" width="95" height="95"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="PHm-Sj-jN2"/>
+                        <constraint firstAttribute="width" constant="95" id="z7T-vo-U3h"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnF-gp-ydA">
+                    <rect key="frame" x="103" y="13" width="45" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i87-dW-LxR">
+                    <rect key="frame" x="103" y="37" width="29" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wD-KF-CRQ">
+                    <rect key="frame" x="103" y="60" width="41" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="VC4-IE-O4y">
+                    <rect key="frame" x="38" y="37" width="20" height="20"/>
+                    <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </activityIndicatorView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="EFe-tD-COF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="BAu-GA-xNI"/>
+                <constraint firstItem="NnF-gp-ydA" firstAttribute="leading" secondItem="EFe-tD-COF" secondAttribute="trailing" constant="8" id="KWy-BR-SPo"/>
+                <constraint firstItem="VC4-IE-O4y" firstAttribute="centerX" secondItem="EFe-tD-COF" secondAttribute="centerX" id="Koq-zl-Knu"/>
+                <constraint firstItem="5wD-KF-CRQ" firstAttribute="leading" secondItem="EFe-tD-COF" secondAttribute="trailing" constant="8" id="RT1-uS-gUQ"/>
+                <constraint firstItem="5wD-KF-CRQ" firstAttribute="top" secondItem="i87-dW-LxR" secondAttribute="bottom" constant="2" id="TB9-2N-Y0K"/>
+                <constraint firstItem="NnF-gp-ydA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="dsY-ek-Z7S"/>
+                <constraint firstItem="VC4-IE-O4y" firstAttribute="centerY" secondItem="EFe-tD-COF" secondAttribute="centerY" id="esl-9l-mhM"/>
+                <constraint firstItem="EFe-tD-COF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="geE-oT-iiT"/>
+                <constraint firstItem="i87-dW-LxR" firstAttribute="top" secondItem="NnF-gp-ydA" secondAttribute="bottom" constant="3" id="iGH-w9-JKG"/>
+                <constraint firstItem="i87-dW-LxR" firstAttribute="leading" secondItem="EFe-tD-COF" secondAttribute="trailing" constant="8" id="qga-st-aI3"/>
+                <constraint firstItem="5wD-KF-CRQ" firstAttribute="top" secondItem="i87-dW-LxR" secondAttribute="bottom" constant="2" id="s1T-qK-lfw"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="email" destination="5wD-KF-CRQ" id="Ows-fQ-DxW"/>
+                <outlet property="imageView" destination="EFe-tD-COF" id="Uml-HD-PHo"/>
+                <outlet property="job" destination="i87-dW-LxR" id="5t1-mn-5gW"/>
+                <outlet property="name" destination="NnF-gp-ydA" id="9ZK-1b-IpH"/>
+                <outlet property="spinner" destination="VC4-IE-O4y" id="pMb-23-wMg"/>
+            </connections>
+            <point key="canvasLocation" x="-28" y="91"/>
+        </view>
+    </objects>
+</document>
