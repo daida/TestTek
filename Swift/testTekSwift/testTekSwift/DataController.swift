@@ -35,10 +35,11 @@ class DataController: NSObject
         return instance!
     }
     
-    func fetchEmployeListFromJson()
+    func fetchEmployeListFromJson(completionClosure: [Employe]? -> Void)
     {
         let url      :   NSURL = NSURL.init(string: kJsonURL)!;
         let request  :   NSURLRequest = NSURLRequest.init(URL: url);
+        var employeList : [Employe]?;
         
         self.session.dataTaskWithRequest(request, completionHandler: {(data: NSData?, response: NSURLResponse?, error: NSError?) in
             if let data = data
@@ -46,6 +47,8 @@ class DataController: NSObject
                 do
                 {
                     let jsonDico = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String:AnyObject]
+                    employeList = ModelParser.parseEmployeWithDictionnary(jsonDico);
+                    completionClosure(employeList!);
                 }
                 catch
                 {

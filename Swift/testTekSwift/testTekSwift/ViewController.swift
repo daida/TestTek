@@ -13,7 +13,12 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        DataController.sharedInstance.fetchEmployeListFromJson();
+        DataController.sharedInstance.fetchEmployeListFromJson { (list: [Employe]?) -> Void in
+            if let list = list
+            {
+                print(list);
+            }
+        };
     }
 
 }
