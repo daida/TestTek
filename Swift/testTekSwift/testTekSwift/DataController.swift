@@ -14,13 +14,17 @@ class DataController: NSObject
 {
     let session: NSURLSession
     let conf   : NSURLSessionConfiguration;
+    let archiver : ModelArchiver;
     
     override init()
     {
         self.conf = NSURLSessionConfiguration.defaultSessionConfiguration();
         self.session = NSURLSession.init(configuration: self.conf);
+        self.archiver = ModelArchiver.init();
+        
         super.init();
     }
+    
     
     class var sharedInstance: DataController
     {
@@ -35,26 +39,43 @@ class DataController: NSObject
         return instance!
     }
     
-    func fetchEmployeListFromJson(completionClosure: [Employe]? -> Void)
+    
+    func fetchEmployeListFromJson(completionClosure: ([Employe]?, NSError?) -> Void)
     {
         let url      :   NSURL = NSURL.init(string: kJsonURL)!;
         let request  :   NSURLRequest = NSURLRequest.init(URL: url);
         var employeList : [Employe]?;
+     
+        employeList = self.archiver .unarchiveEmployeList();
+        
+        if (employeList != nil)
+        {
+            print("liste d'employé récupérée du cache");
+            completionClosure(employeList, nil)
+            return;
+        }
         
         self.session.dataTaskWithRequest(request, completionHandler: {(data: NSData?, response: NSURLResponse?, error: NSError?) in
+            
             if let data = data
             {
                 do
                 {
                     let jsonDico = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as! [String:AnyObject]
                     employeList = ModelParser.parseEmployeWithDictionnary(jsonDico);
-                    completionClosure(employeList!);
+                    self.archiver.archiveEmployeList(employeList!);
+                    completionClosure(employeList!, nil);
                 }
-                catch
+                catch let caught as NSError
                 {
-                    print("json error: \(error)")
+                    completionClosure(nil, caught);
                 }
-                
+                return;
+            }
+            
+            if (error != nil)
+            {
+                completionClosure(nil, error);
             }
             
         }).resume();

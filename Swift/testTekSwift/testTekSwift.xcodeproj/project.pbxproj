@@ -15,6 +15,8 @@
 		A10664341BE01C40003DCB79 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664331BE01C40003DCB79 /* DataController.swift */; };
 		A10664361BE02CE7003DCB79 /* Employe.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664351BE02CE7003DCB79 /* Employe.swift */; };
 		A10664381BE02D87003DCB79 /* ModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664371BE02D87003DCB79 /* ModelParser.swift */; };
+		A106643A1BE0F5A6003DCB79 /* EmployeArchivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */; };
+		A106643C1BE0FBC6003DCB79 /* ModelArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		A10664331BE01C40003DCB79 /* DataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		A10664351BE02CE7003DCB79 /* Employe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Employe.swift; sourceTree = "<group>"; };
 		A10664371BE02D87003DCB79 /* ModelParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelParser.swift; sourceTree = "<group>"; };
+		A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeArchivable.swift; sourceTree = "<group>"; };
+		A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelArchiver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				A10664331BE01C40003DCB79 /* DataController.swift */,
 				A10664351BE02CE7003DCB79 /* Employe.swift */,
 				A10664371BE02D87003DCB79 /* ModelParser.swift */,
+				A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */,
+				A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */,
 			);
 			path = testTekSwift;
 			sourceTree = "<group>";
@@ -147,7 +153,9 @@
 				A10664241BE01BFB003DCB79 /* ViewController.swift in Sources */,
 				A10664341BE01C40003DCB79 /* DataController.swift in Sources */,
 				A10664221BE01BFB003DCB79 /* AppDelegate.swift in Sources */,
+				A106643C1BE0FBC6003DCB79 /* ModelArchiver.swift in Sources */,
 				A10664361BE02CE7003DCB79 /* Employe.swift in Sources */,
+				A106643A1BE0F5A6003DCB79 /* EmployeArchivable.swift in Sources */,
 				A10664381BE02D87003DCB79 /* ModelParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

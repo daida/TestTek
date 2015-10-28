@@ -13,10 +13,14 @@ class ViewController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        DataController.sharedInstance.fetchEmployeListFromJson { (list: [Employe]?) -> Void in
+        DataController.sharedInstance.fetchEmployeListFromJson { (list: [Employe]?, error:NSError?) -> Void in
             if let list = list
             {
-                print(list);
+               print(list);
+            }
+            else if let error = error
+            {
+                print(error);
             }
         };
     }

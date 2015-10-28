@@ -10,8 +10,8 @@ import Foundation
 
 struct Employe
 {
-    var name:      String;
-    var email:     String;
-    var job:       String;
-    var picture:   String;
+    var name:      String = "";
+    var email:     String = "";
+    var job:       String = "";
+    var picture:   String = "";
 }
