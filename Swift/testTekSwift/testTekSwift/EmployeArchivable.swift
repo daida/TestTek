@@ -23,7 +23,7 @@ class EmployeArchivable: NSObject, NSCoding
     required init?(coder aDecoder: NSCoder)
     {
         self.name = aDecoder.decodeObjectForKey("name") as! String?;
-        self.picture = aDecoder.decodeObjectForKey("pictue") as! String?;
+        self.picture = aDecoder.decodeObjectForKey("picture") as! String?;
         self.job = aDecoder.decodeObjectForKey("job") as! String?;
         self.email = aDecoder.decodeObjectForKey("email") as! String?;
         
@@ -52,6 +52,7 @@ class EmployeArchivable: NSObject, NSCoding
     
     func employeStruct() -> Employe
     {
+        
         let dest : Employe = Employe(name: self.name ?? "", email: self.email ?? "", job:self.job ?? "", picture: self.picture ?? "")
         return dest;
     }

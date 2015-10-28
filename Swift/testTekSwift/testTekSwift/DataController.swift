@@ -44,7 +44,7 @@ class DataController: NSObject
     
     
     func fetchEmployeListFromJson(completionClosure: ([Employe]?, NSError?) -> Void)
-    {
+    {        
         let url      :   NSURL = NSURL.init(string: kJsonURL)!;
         let request  :   NSURLRequest = NSURLRequest.init(URL: url);
         var employeList : [Employe]?;
