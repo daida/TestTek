@@ -17,6 +17,8 @@
 		A10664381BE02D87003DCB79 /* ModelParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664371BE02D87003DCB79 /* ModelParser.swift */; };
 		A106643A1BE0F5A6003DCB79 /* EmployeArchivable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */; };
 		A106643C1BE0FBC6003DCB79 /* ModelArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */; };
+		A106643F1BE11829003DCB79 /* Objective-CBridgingHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = A106643E1BE11829003DCB79 /* Objective-CBridgingHeader.m */; };
+		A10664411BE11876003DCB79 /* StringMD5Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664401BE11876003DCB79 /* StringMD5Extention.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		A10664371BE02D87003DCB79 /* ModelParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelParser.swift; sourceTree = "<group>"; };
 		A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmployeArchivable.swift; sourceTree = "<group>"; };
 		A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelArchiver.swift; sourceTree = "<group>"; };
+		A106643D1BE11829003DCB79 /* testTekSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "testTekSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		A106643E1BE11829003DCB79 /* Objective-CBridgingHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Objective-CBridgingHeader.m"; sourceTree = "<group>"; };
+		A10664401BE11876003DCB79 /* StringMD5Extention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringMD5Extention.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +80,9 @@
 				A10664371BE02D87003DCB79 /* ModelParser.swift */,
 				A10664391BE0F5A6003DCB79 /* EmployeArchivable.swift */,
 				A106643B1BE0FBC6003DCB79 /* ModelArchiver.swift */,
+				A106643E1BE11829003DCB79 /* Objective-CBridgingHeader.m */,
+				A106643D1BE11829003DCB79 /* testTekSwift-Bridging-Header.h */,
+				A10664401BE11876003DCB79 /* StringMD5Extention.swift */,
 			);
 			path = testTekSwift;
 			sourceTree = "<group>";
@@ -150,6 +158,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A10664411BE11876003DCB79 /* StringMD5Extention.swift in Sources */,
+				A106643F1BE11829003DCB79 /* Objective-CBridgingHeader.m in Sources */,
 				A10664241BE01BFB003DCB79 /* ViewController.swift in Sources */,
 				A10664341BE01C40003DCB79 /* DataController.swift in Sources */,
 				A10664221BE01BFB003DCB79 /* AppDelegate.swift in Sources */,
@@ -267,10 +277,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = testTekSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daid.testTekSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testTekSwift/testTekSwift-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -278,10 +291,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = testTekSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = daid.testTekSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "testTekSwift/testTekSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};

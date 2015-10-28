@@ -23,6 +23,10 @@ class ViewController: UIViewController
                 print(error);
             }
         };
+        
+        DataController.sharedInstance.fetchImageWithUrl("http://images.questionauto.fr/363/5.%20Alfa%20Romeo%20Giulietta.jpg") { (image: UIImage?, error: NSError?) -> Void in
+            print("image-> %@", image);
+        };
     }
 
 }

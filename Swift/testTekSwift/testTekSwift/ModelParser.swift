@@ -11,7 +11,7 @@ import UIKit
 class ModelParser: NSObject
 {
     
-    class func employeWithDictionnary(dico:[String:String]) -> Employe
+    private class func employeWithDictionnary(dico:[String:String]) -> Employe
     {
         // grace à l'opperateur coalescing si une valeur optinal est nil je fournis une valeur par defaut qui est une chaine vide
         let dest : Employe = Employe(name: dico["name"] ?? "", email: dico["email"] ?? "", job:dico["job"] ?? "", picture: dico["picture"] ?? "")
