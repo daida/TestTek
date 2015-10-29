@@ -31,14 +31,14 @@ class SFTableView: UIView
             }
         }
     }
-
     
-    override init(frame: CGRect)
+    init()
     {
         scrollView = UIScrollView.init();
-        scrollView.frame = frame;
-        super.init(frame: frame);
+        super.init(frame: CGRectNull);
         self.addSubview(scrollView);
+        
+        SFTableViewLayout.activateScrollViewContraints(self.scrollView);
     }
 
     required init?(coder aDecoder: NSCoder)
@@ -49,14 +49,21 @@ class SFTableView: UIView
     
     private func drawCell()
     {
-        var y : CGFloat = 0.0;
-        for cell : SFTableViewCell  in self.cells
+        for var i = 0; i != self.cells.count; i++
         {
-            cell.frame = CGRectMake(0, y, UIScreen.mainScreen().bounds.size.width, cell.frame.size.height);
-            y += (cell.frame.size.height + kCellSpace);
+            let cell : SFTableViewCell = self.cells[i];
+            if i > 0
+            {
+                cell.previousCell = self.cells[i - 1];
+            }
+            if (i < self.cells.count - 1)
+            {
+                cell.nextCell = self.cells[i + 1];
+            }
             self.scrollView .addSubview(cell);
+            SFTableViewLayout.activateSizeConstraintsForCell(cell);
+            cell.cellConstraint = SFTableViewLayout.constraintForCell(cell);
         }
-        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.width, y);
     }
     
     private func setupWithDataSource(dataSource : SFTableViewDataSource)

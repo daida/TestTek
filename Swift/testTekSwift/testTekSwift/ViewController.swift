@@ -15,13 +15,13 @@ class ViewController: UIViewController, SFTableViewDataSource
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
     {
-        self.TableView = SFTableView.init(frame: UIScreen.mainScreen().bounds);
+        self.TableView = SFTableView.init();
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil);
     }
 
     required init?(coder aDecoder: NSCoder)
     {
-        self.TableView = SFTableView.init(frame: UIScreen.mainScreen().bounds);
+        self.TableView = SFTableView.init();
         super.init(coder: aDecoder);
     }
     
@@ -29,6 +29,8 @@ class ViewController: UIViewController, SFTableViewDataSource
     {
         super.viewDidLoad()
         self.view.addSubview(self.TableView);
+        SFTableViewLayout.activateSFTableViewSuperViewConstraints(self.TableView);
+        
         DataController.sharedInstance.fetchEmployeListFromJson { (employe: [Employe]?, error: NSError?) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in

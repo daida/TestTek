@@ -1,54 +1,71 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SFTableViewCell" customModule="testTekSwift" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="415" height="127"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="tKZ-P6-7g7">
-                    <rect key="frame" x="0.0" y="0.0" width="151" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tKZ-P6-7g7">
+                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
                     <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="tKZ-P6-7g7" secondAttribute="height" multiplier="1:1" id="ond-WN-lrv"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EeF-0N-cn9">
-                    <rect key="frame" x="159" y="14" width="248" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeF-0N-cn9">
+                    <rect key="frame" x="128" y="14" width="192" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6P6-ZV-4ts">
-                    <rect key="frame" x="159" y="53" width="248" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="74T-jR-VcT">
+                    <rect key="frame" x="128" y="84" width="192" height="21"/>
                     <animations/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="74T-jR-VcT">
-                    <rect key="frame" x="159" y="86" width="248" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <animations/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" id="vQ5-lD-pou">
-                    <rect key="frame" x="57" y="45" width="37" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vQ5-lD-pou">
+                    <rect key="frame" x="42" y="42" width="37" height="37"/>
                     <animations/>
                     <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </activityIndicatorView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Job" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6P6-ZV-4ts">
+                    <rect key="frame" x="128" y="49" width="192" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="vQ5-lD-pou" firstAttribute="centerY" secondItem="tKZ-P6-7g7" secondAttribute="centerY" id="45u-7f-eGt"/>
+                <constraint firstItem="74T-jR-VcT" firstAttribute="trailing" secondItem="EeF-0N-cn9" secondAttribute="trailing" id="C2Y-do-ITf"/>
+                <constraint firstAttribute="trailing" secondItem="EeF-0N-cn9" secondAttribute="trailing" id="C2l-U4-qMx"/>
+                <constraint firstItem="6P6-ZV-4ts" firstAttribute="leading" secondItem="EeF-0N-cn9" secondAttribute="leading" id="IWY-bp-QUK"/>
+                <constraint firstItem="74T-jR-VcT" firstAttribute="top" secondItem="6P6-ZV-4ts" secondAttribute="bottom" constant="14" id="KTu-OL-L83"/>
+                <constraint firstItem="vQ5-lD-pou" firstAttribute="centerX" secondItem="tKZ-P6-7g7" secondAttribute="centerX" id="MHR-bb-IjC"/>
+                <constraint firstItem="74T-jR-VcT" firstAttribute="leading" secondItem="EeF-0N-cn9" secondAttribute="leading" id="QRE-tS-WqV"/>
+                <constraint firstAttribute="bottom" secondItem="tKZ-P6-7g7" secondAttribute="bottom" id="UBR-Lz-Cnn"/>
+                <constraint firstItem="tKZ-P6-7g7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="40:100" priority="950" id="WMw-yG-R2h"/>
+                <constraint firstItem="tKZ-P6-7g7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dHe-Ps-xht"/>
+                <constraint firstItem="tKZ-P6-7g7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kop-Of-kjD"/>
+                <constraint firstItem="6P6-ZV-4ts" firstAttribute="top" secondItem="EeF-0N-cn9" secondAttribute="bottom" constant="14" id="ksS-NT-HLc"/>
+                <constraint firstItem="EeF-0N-cn9" firstAttribute="leading" secondItem="tKZ-P6-7g7" secondAttribute="trailing" constant="8" id="l6p-mA-Yyp"/>
+                <constraint firstItem="EeF-0N-cn9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="14" id="sHE-cY-3D3"/>
+                <constraint firstItem="6P6-ZV-4ts" firstAttribute="trailing" secondItem="EeF-0N-cn9" secondAttribute="trailing" id="uQM-Rk-XFO"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -59,7 +76,7 @@
                 <outlet property="picture" destination="tKZ-P6-7g7" id="a6D-to-GO3"/>
                 <outlet property="spinner" destination="vQ5-lD-pou" id="TGd-5P-OlG"/>
             </connections>
-            <point key="canvasLocation" x="287.5" y="213.5"/>
+            <point key="canvasLocation" x="320" y="385"/>
         </view>
     </objects>
 </document>

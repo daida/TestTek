@@ -16,6 +16,11 @@ class SFTableViewCell: UIView
     @IBOutlet weak var job: UILabel!
     @IBOutlet weak var email: UILabel!
     @IBOutlet weak var picture: UIImageView!
+    
+    var previousCell : SFTableViewCell?;
+    var nextCell : SFTableViewCell?;
+    var cellConstraint: [NSLayoutConstraint] = [];
+    var topConstraint: NSLayoutConstraint?
 
     private func setupEmploye(employe: Employe)
     {
@@ -47,6 +52,17 @@ class SFTableViewCell: UIView
         dest!.setupEmploye(employe);
         return dest;
     }
+    
+    class func cellHeight() -> Float
+    {
+        return 120.0;
+    }
+    
+    class func cellWidth() -> Float
+    {
+        return Float(UIScreen.mainScreen().bounds.width);
+    }
+
     
     override init(frame: CGRect)
     {

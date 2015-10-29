@@ -23,6 +23,7 @@
 		A10664451BE12B22003DCB79 /* SFTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664441BE12B22003DCB79 /* SFTableViewCell.swift */; };
 		A10664471BE12C3B003DCB79 /* SFTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */; };
 		A10664491BE1306B003DCB79 /* SFTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */; };
+		A14D35221BE26C2C001163CD /* SFTableViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		A10664441BE12B22003DCB79 /* SFTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewCell.swift; sourceTree = "<group>"; };
 		A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFTableViewCell.xib; sourceTree = "<group>"; };
 		A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewProtocol.swift; sourceTree = "<group>"; };
+		A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 				A10664441BE12B22003DCB79 /* SFTableViewCell.swift */,
 				A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */,
 				A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */,
+				A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */,
 			);
 			path = testTekSwift;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				A106643C1BE0FBC6003DCB79 /* ModelArchiver.swift in Sources */,
 				A10664431BE125B7003DCB79 /* SFTableView.swift in Sources */,
 				A10664361BE02CE7003DCB79 /* Employe.swift in Sources */,
+				A14D35221BE26C2C001163CD /* SFTableViewLayout.swift in Sources */,
 				A106643A1BE0F5A6003DCB79 /* EmployeArchivable.swift in Sources */,
 				A10664491BE1306B003DCB79 /* SFTableViewProtocol.swift in Sources */,
 				A10664381BE02D87003DCB79 /* ModelParser.swift in Sources */,
@@ -335,6 +339,7 @@
 				A10664321BE01BFB003DCB79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
