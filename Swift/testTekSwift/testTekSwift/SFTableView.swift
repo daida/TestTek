@@ -11,6 +11,7 @@ import UIKit
 
 let kCellSpace : CGFloat = 10.0;
 let kAnimDuration: Double = 0.25;
+let kBottomInset : CGFloat = 130;
 
 class SFTableView: UIView
 {
@@ -51,6 +52,44 @@ class SFTableView: UIView
         super.init(coder: aDecoder);
     }
     
+    
+    private func getLastCell() -> SFTableViewCell?
+    {
+        var cell : SFTableViewCell? = self.cells.first;
+        while (cell?.nextCell != nil)
+        {
+            cell = cell?.nextCell;
+        }
+        return cell;
+    }
+    
+    private func addFakeCell()
+    {
+         let cell : SFTableViewCell? = self.getLastCell();
+         let fakeCell : SFTableViewCell? = SFTableViewCell.initFakeCell();
+        
+        guard cell != nil && fakeCell != nil
+        else
+        {
+            return;
+        }
+        
+        cell?.nextCell = fakeCell;
+        fakeCell?.previousCell = cell;
+        
+        self.scrollView.addSubview(fakeCell!);
+        
+        SFTableViewLayout.desactiveContraintsForCell(cell!);
+        
+        SFTableViewLayout.activateInitialConstraintsForCell(fakeCell!);
+        SFTableViewLayout.activateClassicModeForCell(cell!);
+        
+        self.cells.append(fakeCell!);
+        
+        self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, -kBottomInset, 0);
+        
+    }
+
     private func drawCell()
     {
         for var i = 0; i != self.cells.count; i++
@@ -64,16 +103,17 @@ class SFTableView: UIView
             {
                 cell.nextCell = self.cells[i + 1];
             }
-            self.scrollView .addSubview(cell);
+            self.scrollView.addSubview(cell);
             SFTableViewLayout.activateInitialConstraintsForCell(cell);
         }
+        self.addFakeCell();
     }
     
     private func cellWithTouch(touch:CGPoint)->SFTableViewCell?
     {
         for cell : SFTableViewCell in self.cells
         {
-            if CGRectContainsPoint(cell.frame, touch)
+            if CGRectContainsPoint(cell.frame, touch) && cell.isFakeCell == false
             {
                 return cell;
             }
@@ -162,6 +202,7 @@ class SFTableView: UIView
             
             UIView.animateWithDuration(kAnimDuration, animations: { () -> Void in
                 self.scrollView .layoutIfNeeded();
+                self.scrollView.contentInset = (UIEdgeInsetsMake(0, 0, -kBottomInset, 0));
             })
             return;
         }
@@ -189,6 +230,7 @@ class SFTableView: UIView
         
         UIView.animateWithDuration(kAnimDuration) { () -> Void in
             self.scrollView.layoutIfNeeded();
+            self.scrollView.contentInset = (UIEdgeInsetsMake(0, 0, -kBottomInset, 0));
         };
         
     }
@@ -236,6 +278,7 @@ class SFTableView: UIView
         switch longPress.state
         {
             case UIGestureRecognizerState.Began :
+                self.scrollView.contentInset = (UIEdgeInsetsMake(0, 0, 0, 0));
                 self.scrollView.scrollEnabled = false;
                 self.candidateCell = nil;
                 let cell : SFTableViewCell?  = self.cellWithTouch(self.touchPoint);

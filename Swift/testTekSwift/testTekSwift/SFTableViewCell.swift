@@ -25,6 +25,11 @@ class SFTableViewCell: UIView
     var nextCell : SFTableViewCell?;
     var cellConstraint: [NSLayoutConstraint] = [];
     var topConstraint: NSLayoutConstraint?
+    private var fakeCell     : Bool = false;
+    var isFakeCell : Bool
+    {
+        return fakeCell;
+    }
 
     private func setupEmploye(employe: Employe)
     {
@@ -56,6 +61,30 @@ class SFTableViewCell: UIView
         dest!.setupEmploye(employe);
         return dest;
     }
+    
+    private func setupFakeMode()
+    {
+        self.fakeCell = true;
+        for aView : UIView in self.subviews
+        {
+            aView .removeFromSuperview();
+        }
+    }
+    
+    class func initFakeCell() -> SFTableViewCell?
+    {
+        let dest : SFTableViewCell? = NSBundle.mainBundle().loadNibNamed("SFTableViewCell", owner: nil, options: nil).first as! SFTableViewCell?;
+        
+        if dest == nil
+        {
+            return nil;
+        }
+        
+        dest?.setupFakeMode();
+        
+        return dest;
+    }
+
     
     class func cellHeight() -> Float
     {
