@@ -9,10 +9,26 @@
 import Foundation
 import UIKit
 
+enum SFTableViewLayoutType
+{
+    case stupeFlip;
+    case standard;
+}
 
 class SFTableViewLayoutManager : SFTableViewLayoutProtocol
 {
-    static var layoutManager : SFTableViewLayoutProtocol.Type = SFTableViewLayoutStupeFlip.self; //SFTableViewLayout aussi disponible utilise les appels standards à Autolayout
+    static var layoutType  : SFTableViewLayoutType = SFTableViewLayoutType.stupeFlip;
+    
+    static var layoutManager : SFTableViewLayoutProtocol.Type{
+        get{
+            switch self.layoutType{
+            case .stupeFlip:
+                return SFTableViewLayoutStupeFlip.self;
+            default:
+                return SFTableViewLayout.self;
+            }
+        }
+    }
 
     class func activateSFTableViewSuperViewConstraints(tableView: SFTableView)
     {
