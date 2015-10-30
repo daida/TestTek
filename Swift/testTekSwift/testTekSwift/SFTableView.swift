@@ -12,6 +12,12 @@ import UIKit
 let kCellSpace : CGFloat = 10.0;
 let kAnimDuration: Double = 0.25;
 let kBottomInset : CGFloat = 130;
+let kTimeInterval: Double = 0.001;
+
+let kAnimScrollOffset : CGFloat = 4.0;
+let kTopScrollRatioLimit : CGFloat = 0.15;
+let kBottomScrollRatioLimit : CGFloat = 0.85;
+
 
 class SFTableView: UIView
 {
@@ -21,6 +27,8 @@ class SFTableView: UIView
     private var moovingCell : SFTableViewCell?
     private var candidateCell : SFTableViewCell?
     private var touchPoint    : CGPoint = CGPointZero;
+    private var timer         : NSTimer?;
+    private var touchScreen   : CGPoint = CGPointZero;
     
     var dataSource : SFTableViewDataSource? {
         get
@@ -63,11 +71,72 @@ class SFTableView: UIView
         return cell;
     }
     
+    
+    func animScroll()
+    {
+        if self.touchScreen.y < (self.bounds.size.height * kTopScrollRatioLimit)
+        {
+            if self.scrollView.contentOffset.y - 1 > 0
+            {
+                var p : CGPoint = self.touchPoint;
+                p.y = p.y - kAnimScrollOffset;
+                self.touchPoint = p;
+                self.moovingCell!.topConstraint?.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
+                self.findNewCandidateCell();
+                self.scrollView.setContentOffset(CGPointMake(0, self.scrollView.contentOffset.y - kAnimScrollOffset), animated: false)
+            }
+        }
+        
+        if self.touchScreen.y > (self.bounds.size.height * kBottomScrollRatioLimit)
+        {
+            if self.scrollView.contentOffset.y + 1 < (self.scrollView.contentSize.height - self.scrollView.bounds.size.height) + kBottomInset
+            {
+                var p : CGPoint = self.touchPoint;
+                p.y = p.y + kAnimScrollOffset;
+                self.touchPoint = p;
+                self.moovingCell!.topConstraint?.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
+                self.findNewCandidateCell();
+                self.scrollView.setContentOffset(CGPointMake(0, self.scrollView.contentOffset.y + kAnimScrollOffset), animated: false)
+            }
+        }
+
+        
+    }
+
+    private func startTimer()
+    {
+        guard self.timer == nil
+        else
+        {
+            return;
+        }
+        self.timer = NSTimer.init(timeInterval: kTimeInterval, target: self, selector: Selector("animScroll"), userInfo: nil, repeats: true);
+        
+        if (self.timer == nil)
+        {
+            return;
+        }
+        
+        NSRunLoop.mainRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode);
+    }
+
+    private func stopTimer()
+    {
+        guard self.timer != nil else
+        {
+            return;
+        }
+        
+        self.timer!.invalidate();
+        self.timer = nil;
+    }
+
+
     private func addFakeCell()
     {
          let cell : SFTableViewCell? = self.getLastCell();
          let fakeCell : SFTableViewCell? = SFTableViewCell.initFakeCell();
-        
+
         guard cell != nil && fakeCell != nil
         else
         {
@@ -274,6 +343,7 @@ class SFTableView: UIView
     func didLongTouch(longPress : UILongPressGestureRecognizer)
     {
         self.touchPoint = longPress.locationInView(longPress.view);
+        self.touchScreen = longPress.locationInView(self);
         
         switch longPress.state
         {
@@ -297,9 +367,11 @@ class SFTableView: UIView
             
             self.moovingCell!.topConstraint!.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
             self.findNewCandidateCell();
+            self.startTimer();
             break;
             
         case UIGestureRecognizerState.Ended:
+            self.stopTimer();
             if self.moovingCell == nil
             {
                 return;

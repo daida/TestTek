@@ -24,17 +24,16 @@ class SFTableViewLayout : NSObject
         
         superView.translatesAutoresizingMaskIntoConstraints = false;
         
-        var horizontalConstraints : [NSLayoutConstraint];
+        var horizontalConstraints :  [NSLayoutConstraint];
         var vertivalContstraints  :  [NSLayoutConstraint];
-        
+        let metrics               :  [String:String]? = ["topMargin":"20"];
         var dest  :  [NSLayoutConstraint];
-        
         let views : [String:UIView] = ["tableView": tableView];
         
         
        horizontalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|-0-[tableView]-0-|", options: [], metrics: nil, views: views);
         
-        vertivalContstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[tableView]-0-|", options: [], metrics: nil, views: views);
+        vertivalContstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[tableView]-0-|", options: [], metrics: metrics, views: views);
         
         dest = horizontalConstraints + vertivalContstraints;
         
