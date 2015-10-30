@@ -19,7 +19,7 @@ class SFTableViewLayoutManager : SFTableViewLayoutProtocol
 {
     static var layoutType  : SFTableViewLayoutType = SFTableViewLayoutType.stupeFlip;
     
-    static var layoutManager : SFTableViewLayoutProtocol.Type{
+    private static var layout : SFTableViewLayoutProtocol.Type{
         get{
             switch self.layoutType{
             case .stupeFlip:
@@ -32,31 +32,31 @@ class SFTableViewLayoutManager : SFTableViewLayoutProtocol
 
     class func activateSFTableViewSuperViewConstraints(tableView: SFTableView)
     {
-        layoutManager.activateSFTableViewSuperViewConstraints(tableView)
+        layout.activateSFTableViewSuperViewConstraints(tableView)
     }
     
     class func activateScrollViewContraints(scrollView: UIScrollView)
     {
-        layoutManager.activateScrollViewContraints(scrollView);
+        layout.activateScrollViewContraints(scrollView);
     }
     
     class func activateInitialConstraintsForCell(cell: SFTableViewCell)
     {
-        layoutManager.activateInitialConstraintsForCell(cell);
+        layout.activateInitialConstraintsForCell(cell);
     }
     
     class func activateClassicModeForCell(cell: SFTableViewCell)
     {
-        layoutManager.activateClassicModeForCell(cell);
+        layout.activateClassicModeForCell(cell);
     }
     
     class func activateMoovingModeForCell(cell: SFTableViewCell)
     {
-        layoutManager.activateMoovingModeForCell(cell);
+        layout.activateMoovingModeForCell(cell);
     }
     
     class func desactiveContraintsForCell(cell: SFTableViewCell)
     {
-        layoutManager.desactiveContraintsForCell(cell);
+        layout.desactiveContraintsForCell(cell);
     }
 }
