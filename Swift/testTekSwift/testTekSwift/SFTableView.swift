@@ -98,7 +98,10 @@ class SFTableView: UIView
     private func activateMoovingCellForCell(cell: SFTableViewCell)
     {
         self.moovingCell = cell;
+        
         self.desactivateCandidateModeForAllCell();
+        
+        SFTableViewLayout.desactiveContraintsForCell(cell);
         
         cell.superview!.bringSubviewToFront(cell);
         

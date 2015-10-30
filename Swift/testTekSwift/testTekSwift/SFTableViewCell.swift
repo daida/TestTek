@@ -80,6 +80,12 @@ class SFTableViewCell: UIView
     
     func desactivateCandidateMode()
     {
+        guard self.topConstraint != nil
+        else
+        {
+            return;
+        }
+        
         if self.previousCell == nil
         {
             self.topConstraint!.constant = 0;

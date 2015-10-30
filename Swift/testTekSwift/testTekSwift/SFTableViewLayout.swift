@@ -117,8 +117,7 @@ class SFTableViewLayout : NSObject
             return;
         }
         
-        cell.superview!.removeConstraints(cell.cellConstraint);
-        cell.cellConstraint.removeAll();
+        self.desactiveContraintsForCell(cell);
         
         if cell.previousCell != nil
         {
@@ -158,16 +157,29 @@ class SFTableViewLayout : NSObject
         }
         
         let views : [String:UIView] = ["Cell":cell];
-
-        cell.superview!.removeConstraints(cell.cellConstraint);
-
-        cell.cellConstraint.removeAll();
+        
+        self.desactiveContraintsForCell(cell);
         
         let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[Cell]", options:[],metrics:nil,views:views);
         
         NSLayoutConstraint.activateConstraints(verticalConstraints);
         cell.topConstraint = verticalConstraints.last;
         cell.cellConstraint = verticalConstraints;
+    }
+    
+    class func desactiveContraintsForCell(cell :SFTableViewCell)
+    {
+        guard cell.superview != nil else
+        {
+            return;
+        }
+        
+        if (cell.cellConstraint.count > 0)
+        {
+            cell.superview!.removeConstraints(cell.cellConstraint);
+            cell.cellConstraint.removeAll();
+            cell.topConstraint = nil;
+        }
     }
 
 }
