@@ -80,7 +80,7 @@ class SFTableViewLayout : NSObject
         NSLayoutConstraint.activateConstraints(dest);
     }
 
-    class func activateSizeConstraintsForCell(cell: SFTableViewCell)
+    class func activateInitialConstraintsForCell(cell: SFTableViewCell)
     {
         guard cell.superview != nil else
         {
@@ -101,9 +101,10 @@ class SFTableViewLayout : NSObject
         dest = horizontalConstraints + verticalConstraints;
         
         NSLayoutConstraint.activateConstraints(dest);
+        self.activateClassicModeForCell(cell);
     }
     
-    class func constraintForCell(cell: SFTableViewCell) -> [NSLayoutConstraint]
+    class func activateClassicModeForCell(cell: SFTableViewCell)
     {
         var verticalConstraints : [NSLayoutConstraint];
         var lastCellConstraints : [NSLayoutConstraint] = [];
@@ -111,16 +112,23 @@ class SFTableViewLayout : NSObject
         let metrics         : [String:String] = ["spaceBetweenCells":"10"];
         var dest            : [NSLayoutConstraint] = [];
         
+        guard cell.superview != nil else
+        {
+            return;
+        }
+        
+        cell.superview!.removeConstraints(cell.cellConstraint);
+        cell.cellConstraint.removeAll();
         
         if cell.previousCell != nil
         {
             views = ["Cell":cell, "PreviousCell":cell.previousCell!];
-            verticalConstraints = NSLayoutConstraint .constraintsWithVisualFormat("V:[PreviousCell]-spaceBetweenCells-[Cell]", options: [], metrics: metrics, views: views)
+            verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:[PreviousCell]-spaceBetweenCells-[Cell]", options: [], metrics: metrics, views: views)
         }
         else
         {
             views = ["Cell":cell];
-            verticalConstraints = NSLayoutConstraint .constraintsWithVisualFormat("V:|-0-[Cell]", options: [], metrics: nil, views: views)
+            verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[Cell]", options: [], metrics: nil, views: views)
 
         }
         dest = verticalConstraints;
@@ -131,9 +139,35 @@ class SFTableViewLayout : NSObject
             dest.appendContentsOf(lastCellConstraints);
         }
         
-        NSLayoutConstraint.activateConstraints(dest);
+        if (cell.topConstraint != nil)
+        {
+            cell.topConstraint = nil;
+        }
         
-        return dest;
+        cell.topConstraint = verticalConstraints.last;
+        
+        NSLayoutConstraint.activateConstraints(dest);
+        cell.cellConstraint = dest;
+    }
+    
+    class func activateMoovingModeForCell(cell: SFTableViewCell)
+    {
+        guard cell.superview != nil else
+        {
+            return;
+        }
+        
+        let views : [String:UIView] = ["Cell":cell];
+
+        cell.superview!.removeConstraints(cell.cellConstraint);
+
+        cell.cellConstraint.removeAll();
+        
+        let verticalConstraints = NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[Cell]", options:[],metrics:nil,views:views);
+        
+        NSLayoutConstraint.activateConstraints(verticalConstraints);
+        cell.topConstraint = verticalConstraints.last;
+        cell.cellConstraint = verticalConstraints;
     }
 
 }

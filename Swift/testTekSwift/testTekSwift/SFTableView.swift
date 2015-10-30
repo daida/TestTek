@@ -10,12 +10,16 @@ import Foundation
 import UIKit
 
 let kCellSpace : CGFloat = 10.0;
+let kAnimDuration: Double = 0.25;
 
 class SFTableView: UIView
 {
     var scrollView : UIScrollView;
     private var _dataSource : SFTableViewDataSource?;
     private var cells : [SFTableViewCell] = [];
+    private var moovingCell : SFTableViewCell?
+    private var candidateCell : SFTableViewCell?
+    private var touchPoint    : CGPoint = CGPointZero;
     
     var dataSource : SFTableViewDataSource? {
         get
@@ -61,12 +65,214 @@ class SFTableView: UIView
                 cell.nextCell = self.cells[i + 1];
             }
             self.scrollView .addSubview(cell);
-            SFTableViewLayout.activateSizeConstraintsForCell(cell);
-            cell.cellConstraint = SFTableViewLayout.constraintForCell(cell);
+            SFTableViewLayout.activateInitialConstraintsForCell(cell);
         }
     }
     
-    private func setupWithDataSource(dataSource : SFTableViewDataSource)
+    private func cellWithTouch(touch:CGPoint)->SFTableViewCell?
+    {
+        for cell : SFTableViewCell in self.cells
+        {
+            if CGRectContainsPoint(cell.frame, touch)
+            {
+                return cell;
+            }
+        }
+        return nil;
+    }
+    
+    private func cellWithTouchCoverByMoovingCell(touch:CGPoint)->SFTableViewCell?
+    {
+        for cell : SFTableViewCell in self.cells
+        {
+            if CGRectContainsPoint(cell.frame, touch) && cell != self.moovingCell
+            {
+                return cell;
+            }
+        }
+        return nil;
+    }
+
+    
+    
+    private func activateMoovingCellForCell(cell: SFTableViewCell)
+    {
+        self.moovingCell = cell;
+        self.desactivateCandidateModeForAllCell();
+        
+        cell.superview!.bringSubviewToFront(cell);
+        
+        let previousCell : SFTableViewCell? = cell.previousCell;
+        let nextCell : SFTableViewCell? = cell.nextCell;
+        
+        nextCell?.previousCell = previousCell;
+        previousCell?.nextCell = nextCell;
+        
+        if nextCell != nil
+        {
+            SFTableViewLayout.activateClassicModeForCell(nextCell!);
+        }
+
+        if previousCell != nil
+        {
+            SFTableViewLayout.activateClassicModeForCell(previousCell!);
+        }
+        
+        SFTableViewLayout.activateMoovingModeForCell(cell);
+        cell.topConstraint!.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
+        
+        self.candidateCell = self.moovingCell?.nextCell;
+        
+        self.candidateCell?.activateCandidateMode();
+        
+        UIView.animateWithDuration(kAnimDuration) { () -> Void in
+            self.scrollView .layoutIfNeeded();
+        }
+    }
+    
+    
+    private func desactivateMoovingCell()
+    {
+        guard self.moovingCell != nil
+        else
+        {
+            return;
+        }
+        
+        if (self.candidateCell == nil)
+        {
+            self.moovingCell!.previousCell?.nextCell = self.moovingCell;
+            self.moovingCell!.nextCell?.previousCell = self.moovingCell;
+            SFTableViewLayout.activateClassicModeForCell(self.moovingCell!);
+            if (self.moovingCell!.previousCell != nil)
+            {
+                SFTableViewLayout.activateClassicModeForCell(self.moovingCell!.previousCell!);
+            }
+            
+            if (self.moovingCell!.nextCell != nil)
+            {
+                SFTableViewLayout.activateClassicModeForCell(self.moovingCell!.nextCell!);
+            }
+            
+            self.moovingCell = nil;
+            self.candidateCell = nil;
+            
+            UIView.animateWithDuration(kAnimDuration, animations: { () -> Void in
+                self.scrollView .layoutIfNeeded();
+            })
+            return;
+        }
+        
+        let previousCell : SFTableViewCell? = self.candidateCell?.previousCell;
+        previousCell?.nextCell = self.moovingCell;
+        
+        self.moovingCell?.previousCell = self.candidateCell?.previousCell;
+        self.moovingCell?.nextCell = self.candidateCell;
+        
+        self.candidateCell?.previousCell?.nextCell = self.moovingCell;
+        self.candidateCell?.previousCell = self.moovingCell;
+        
+        SFTableViewLayout.activateClassicModeForCell(self.moovingCell!);
+        SFTableViewLayout.activateClassicModeForCell(self.candidateCell!);
+        
+        if previousCell != nil
+        {
+            SFTableViewLayout.activateClassicModeForCell(previousCell!);
+        }
+        
+        self.desactivateCandidateModeForAllCell();
+        self.moovingCell = nil;
+        self.candidateCell = nil;
+        
+        UIView.animateWithDuration(kAnimDuration) { () -> Void in
+            self.scrollView.layoutIfNeeded();
+        };
+        
+    }
+    
+    
+    
+    private func desactivateCandidateModeForAllCell()
+    {
+        for cell:SFTableViewCell in self.cells
+        {
+            cell.desactivateCandidateMode();
+        }
+    }
+    
+    private func activateCandidateModeForCell(cell : SFTableViewCell)
+    {
+        for currentCell:SFTableViewCell in self.cells
+        {
+            if (currentCell != cell && currentCell != self.moovingCell)
+            {
+                currentCell.desactivateCandidateMode();
+            }
+        }
+        cell.activateCandidateMode();
+        UIView.animateWithDuration(kAnimDuration) { () -> Void in
+            self.layoutIfNeeded();
+        };
+    }
+    
+    private func findNewCandidateCell()
+    {
+        let overlapCell : SFTableViewCell? = self.cellWithTouchCoverByMoovingCell(self.touchPoint);
+        
+        if overlapCell != nil && overlapCell != self.candidateCell
+        {
+            self.activateCandidateModeForCell(overlapCell!);
+            self.candidateCell = overlapCell;
+        }
+    }
+    
+    func didLongTouch(longPress : UILongPressGestureRecognizer)
+    {
+        self.touchPoint = longPress.locationInView(longPress.view);
+        
+        switch longPress.state
+        {
+            case UIGestureRecognizerState.Began :
+                self.scrollView.scrollEnabled = false;
+                self.candidateCell = nil;
+                let cell : SFTableViewCell?  = self.cellWithTouch(self.touchPoint);
+                if cell == nil
+                {
+                    return;
+                }
+                self.activateMoovingCellForCell(cell!);
+                break;
+        
+        case UIGestureRecognizerState.Changed :
+            if self.moovingCell == nil
+            {
+                return;
+            }
+            
+            self.moovingCell!.topConstraint!.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
+            self.findNewCandidateCell();
+            break;
+            
+        case UIGestureRecognizerState.Ended:
+            if self.moovingCell == nil
+            {
+                return;
+            }
+            self.desactivateMoovingCell();
+            self.scrollView.scrollEnabled = true;
+        default :
+            break;
+        }
+        
+    }
+    
+    private func setupGestures()
+    {
+        let longPress : UILongPressGestureRecognizer = UILongPressGestureRecognizer.init(target: self, action:Selector("didLongTouch:"));
+        self.scrollView.addGestureRecognizer(longPress);
+    }
+    
+    private func loadDataWithDataSource(dataSource: SFTableViewDataSource)
     {
         let limit : Int = dataSource.tableView(self, numberOfRowsInSection: 0);
         
@@ -75,6 +281,13 @@ class SFTableView: UIView
             let cell : SFTableViewCell = dataSource.tableView(self, cellForRowAtIndexPath: NSIndexPath(forRow: index, inSection: 0));
             self.cells.append(cell);
         }
+
+    }
+    
+    private func setupWithDataSource(dataSource : SFTableViewDataSource)
+    {
+        self.loadDataWithDataSource(dataSource);
         self.drawCell();
+        self.setupGestures();
     }
 }

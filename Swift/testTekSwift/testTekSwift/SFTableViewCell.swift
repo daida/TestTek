@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+
+let kCandidateModeOffMargin: CGFloat = 10;
+let kCandidateModeOnMargin: CGFloat = 140;
+
 class SFTableViewCell: UIView
 {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
@@ -72,5 +76,28 @@ class SFTableViewCell: UIView
     required init?(coder aDecoder: NSCoder)
     {
         super.init(coder: aDecoder);
+    }
+    
+    func desactivateCandidateMode()
+    {
+        if self.previousCell == nil
+        {
+            self.topConstraint!.constant = 0;
+        }
+        else
+        {
+            self.topConstraint!.constant = kCandidateModeOffMargin;
+        }
+    }
+    
+    func activateCandidateMode()
+    {
+        guard let topConstraint = self.topConstraint
+        else
+        {
+            return;
+        }
+        
+        topConstraint.constant = kCandidateModeOnMargin;
     }
 }
