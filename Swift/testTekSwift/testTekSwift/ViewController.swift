@@ -29,7 +29,7 @@ class ViewController: UIViewController, SFTableViewDataSource
     {
         super.viewDidLoad()
         self.view.addSubview(self.TableView);
-        SFTableViewLayout.activateSFTableViewSuperViewConstraints(self.TableView);
+        SFTableViewLayoutManager.activateSFTableViewSuperViewConstraints(self.TableView);
         
         DataController.sharedInstance.fetchEmployeListFromJson { (employe: [Employe]?, error: NSError?) -> Void in
             

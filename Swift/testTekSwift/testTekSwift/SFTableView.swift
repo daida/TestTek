@@ -51,7 +51,7 @@ class SFTableView: UIView
         super.init(frame: CGRectNull);
         self.addSubview(scrollView);
         
-        SFTableViewLayout.activateScrollViewContraints(self.scrollView);
+        SFTableViewLayoutManager.activateScrollViewContraints(self.scrollView);
     }
 
     required init?(coder aDecoder: NSCoder)
@@ -148,10 +148,10 @@ class SFTableView: UIView
         
         self.scrollView.addSubview(fakeCell!);
         
-        SFTableViewLayout.desactiveContraintsForCell(cell!);
+        SFTableViewLayoutManager.desactiveContraintsForCell(cell!);
         
-        SFTableViewLayout.activateInitialConstraintsForCell(fakeCell!);
-        SFTableViewLayout.activateClassicModeForCell(cell!);
+        SFTableViewLayoutManager.activateInitialConstraintsForCell(fakeCell!);
+        SFTableViewLayoutManager.activateClassicModeForCell(cell!);
         
         self.cells.append(fakeCell!);
         
@@ -173,7 +173,7 @@ class SFTableView: UIView
                 cell.nextCell = self.cells[i + 1];
             }
             self.scrollView.addSubview(cell);
-            SFTableViewLayout.activateInitialConstraintsForCell(cell);
+            SFTableViewLayoutManager.activateInitialConstraintsForCell(cell);
         }
         self.addFakeCell();
     }
@@ -210,7 +210,7 @@ class SFTableView: UIView
         
         self.desactivateCandidateModeForAllCell();
         
-        SFTableViewLayout.desactiveContraintsForCell(cell);
+        SFTableViewLayoutManager.desactiveContraintsForCell(cell);
         
         cell.superview!.bringSubviewToFront(cell);
         
@@ -222,15 +222,15 @@ class SFTableView: UIView
         
         if nextCell != nil
         {
-            SFTableViewLayout.activateClassicModeForCell(nextCell!);
+            SFTableViewLayoutManager.activateClassicModeForCell(nextCell!);
         }
 
         if previousCell != nil
         {
-            SFTableViewLayout.activateClassicModeForCell(previousCell!);
+            SFTableViewLayoutManager.activateClassicModeForCell(previousCell!);
         }
         
-        SFTableViewLayout.activateMoovingModeForCell(cell);
+        SFTableViewLayoutManager.activateMoovingModeForCell(cell);
         cell.topConstraint!.constant = self.touchPoint.y - (CGFloat(SFTableViewCell.cellHeight()) / 2.0);
         
         self.candidateCell = self.moovingCell?.nextCell;
@@ -255,15 +255,15 @@ class SFTableView: UIView
         {
             self.moovingCell!.previousCell?.nextCell = self.moovingCell;
             self.moovingCell!.nextCell?.previousCell = self.moovingCell;
-            SFTableViewLayout.activateClassicModeForCell(self.moovingCell!);
+            SFTableViewLayoutManager.activateClassicModeForCell(self.moovingCell!);
             if (self.moovingCell!.previousCell != nil)
             {
-                SFTableViewLayout.activateClassicModeForCell(self.moovingCell!.previousCell!);
+                SFTableViewLayoutManager.activateClassicModeForCell(self.moovingCell!.previousCell!);
             }
             
             if (self.moovingCell!.nextCell != nil)
             {
-                SFTableViewLayout.activateClassicModeForCell(self.moovingCell!.nextCell!);
+                SFTableViewLayoutManager.activateClassicModeForCell(self.moovingCell!.nextCell!);
             }
             
             self.moovingCell = nil;
@@ -285,12 +285,12 @@ class SFTableView: UIView
         self.candidateCell?.previousCell?.nextCell = self.moovingCell;
         self.candidateCell?.previousCell = self.moovingCell;
         
-        SFTableViewLayout.activateClassicModeForCell(self.moovingCell!);
-        SFTableViewLayout.activateClassicModeForCell(self.candidateCell!);
+        SFTableViewLayoutManager.activateClassicModeForCell(self.moovingCell!);
+        SFTableViewLayoutManager.activateClassicModeForCell(self.candidateCell!);
         
         if previousCell != nil
         {
-            SFTableViewLayout.activateClassicModeForCell(previousCell!);
+            SFTableViewLayoutManager.activateClassicModeForCell(previousCell!);
         }
         
         self.desactivateCandidateModeForAllCell();

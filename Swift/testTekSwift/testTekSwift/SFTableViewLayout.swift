@@ -12,7 +12,7 @@ import UIKit
 let kAllConstraints : String = "kAllConstraints";
 let kTopConstraint : String = "kTopConstraint";
 
-class SFTableViewLayout : NSObject
+class SFTableViewLayout : NSObject, SFTableViewLayoutProtocol
 {
     class func activateSFTableViewSuperViewConstraints(tableView: SFTableView)
     {

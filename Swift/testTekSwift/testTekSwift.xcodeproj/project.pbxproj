@@ -24,6 +24,10 @@
 		A10664471BE12C3B003DCB79 /* SFTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */; };
 		A10664491BE1306B003DCB79 /* SFTableViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */; };
 		A14D35221BE26C2C001163CD /* SFTableViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */; };
+		A1D3CF751BE3A8A6003F4687 /* SFTableViewLayoutProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CF741BE3A8A6003F4687 /* SFTableViewLayoutProtocol.swift */; };
+		A1D3CF771BE3AB7F003F4687 /* SFTableViewLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CF761BE3AB7F003F4687 /* SFTableViewLayoutManager.swift */; };
+		A1D3CF791BE3ADDC003F4687 /* SFTableViewLayoutStupeFlix.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CF781BE3ADDC003F4687 /* SFTableViewLayoutStupeFlix.swift */; };
+		A1D3CF7B1BE3AECC003F4687 /* UIView+SXConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D3CF7A1BE3AECC003F4687 /* UIView+SXConstraints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SFTableViewCell.xib; sourceTree = "<group>"; };
 		A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewProtocol.swift; sourceTree = "<group>"; };
 		A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewLayout.swift; sourceTree = "<group>"; };
+		A1D3CF741BE3A8A6003F4687 /* SFTableViewLayoutProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewLayoutProtocol.swift; sourceTree = "<group>"; };
+		A1D3CF761BE3AB7F003F4687 /* SFTableViewLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewLayoutManager.swift; sourceTree = "<group>"; };
+		A1D3CF781BE3ADDC003F4687 /* SFTableViewLayoutStupeFlix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTableViewLayoutStupeFlix.swift; sourceTree = "<group>"; };
+		A1D3CF7A1BE3AECC003F4687 /* UIView+SXConstraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SXConstraints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 		A10664201BE01BFB003DCB79 /* testTekSwift */ = {
 			isa = PBXGroup;
 			children = (
+				A1D3CF7A1BE3AECC003F4687 /* UIView+SXConstraints.swift */,
 				A10664211BE01BFB003DCB79 /* AppDelegate.swift */,
 				A10664231BE01BFB003DCB79 /* ViewController.swift */,
 				A10664251BE01BFB003DCB79 /* Main.storyboard */,
@@ -97,7 +106,10 @@
 				A10664441BE12B22003DCB79 /* SFTableViewCell.swift */,
 				A10664461BE12C3A003DCB79 /* SFTableViewCell.xib */,
 				A10664481BE1306B003DCB79 /* SFTableViewProtocol.swift */,
+				A1D3CF741BE3A8A6003F4687 /* SFTableViewLayoutProtocol.swift */,
+				A1D3CF761BE3AB7F003F4687 /* SFTableViewLayoutManager.swift */,
 				A14D35211BE26C2C001163CD /* SFTableViewLayout.swift */,
+				A1D3CF781BE3ADDC003F4687 /* SFTableViewLayoutStupeFlix.swift */,
 			);
 			path = testTekSwift;
 			sourceTree = "<group>";
@@ -176,10 +188,14 @@
 			files = (
 				A10664451BE12B22003DCB79 /* SFTableViewCell.swift in Sources */,
 				A10664411BE11876003DCB79 /* StringMD5Extention.swift in Sources */,
+				A1D3CF791BE3ADDC003F4687 /* SFTableViewLayoutStupeFlix.swift in Sources */,
 				A106643F1BE11829003DCB79 /* Objective-CBridgingHeader.m in Sources */,
+				A1D3CF771BE3AB7F003F4687 /* SFTableViewLayoutManager.swift in Sources */,
+				A1D3CF7B1BE3AECC003F4687 /* UIView+SXConstraints.swift in Sources */,
 				A10664241BE01BFB003DCB79 /* ViewController.swift in Sources */,
 				A10664341BE01C40003DCB79 /* DataController.swift in Sources */,
 				A10664221BE01BFB003DCB79 /* AppDelegate.swift in Sources */,
+				A1D3CF751BE3A8A6003F4687 /* SFTableViewLayoutProtocol.swift in Sources */,
 				A106643C1BE0FBC6003DCB79 /* ModelArchiver.swift in Sources */,
 				A10664431BE125B7003DCB79 /* SFTableView.swift in Sources */,
 				A10664361BE02CE7003DCB79 /* Employe.swift in Sources */,
